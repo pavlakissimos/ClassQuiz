@@ -10,7 +10,7 @@ name: "[CI] Frontend / Build"
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [master]
     paths:
       - "frontend/**"
 #  pull_request:
@@ -19,8 +19,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: mawoka-myblock/classquiz-frontend
-
+  IMAGE_NAME: ${{ github.repository }}/classquiz-frontend
 
 jobs:
   build:
@@ -42,15 +41,13 @@ jobs:
           sed -i "s/VITE_GITHUB_AUTH_ENABLED=true/VITE_GITHUB_AUTH_ENABLED=false/g" frontend/Dockerfile
           sed -i "s/VITE_CAPTCHA_ENABLED=true/VITE_CAPTCHA_ENABLED=false/g" frontend/Dockerfile
 
-
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
         if: github.event_name != 'pull_request'
         uses: sigstore/cosign-installer@v3.0.1
         with:
-          cosign-release: 'v2.0.0'
-
+          cosign-release: "v2.0.0"
 
       # Workaround: https://github.com/docker/build-push-action/issues/461
       - name: Setup Docker buildx

@@ -11,7 +11,7 @@
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . '!src/lib/i18n/locales/*.json' '!pnpm-lock.yaml' '!src/app.html' && eslint --ignore-path .gitignore .",
 		"lint-without-format-checking": "eslint --ignore-path .gitignore .",
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. . '!src/lib/i18n/locales/*.json'",
-		"run:prod": "node index.js",
+		"run:prod": "DEBUG=socket* node index.js",
 		"translations-scan": "i18next-scanner --config i18next-scanner.config.engine.cjs src/**/*.svelte"
 	},
 	"devDependencies": {
