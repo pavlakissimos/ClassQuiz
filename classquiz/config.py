@@ -34,12 +34,12 @@ class Settings(BaseSettings):
     db_url: str | PostgresDsn = "postgresql://postgres:mysecretpassword@localhost:5432/classquiz"
     hcaptcha_key: str | None = None
     recaptcha_key: str | None = None
-    mail_address: str = ""
-    mail_password: str = ""
-    mail_username: str = ""
-    mail_server: str = ""
-    mail_port: int = 587
-    secret_key: str = ""
+    mail_address: str
+    mail_password: str
+    mail_username: str
+    mail_server: str
+    mail_port: int
+    secret_key: str
     access_token_expire_minutes: int = 30
     cache_expiry: int = 86400
     sentry_dsn: str | None
@@ -60,7 +60,7 @@ class Settings(BaseSettings):
     storage_backend: str | None = "local"
 
     # if storage_backend == "local":
-    storage_path: str | None = "storage"
+    storage_path: str | None
 
     # if storage_backend == "s3":
     s3_access_key: str | None
