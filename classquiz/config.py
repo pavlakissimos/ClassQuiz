@@ -44,8 +44,8 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = 30
     cache_expiry: int = 86400
     sentry_dsn: str | None
-    meilisearch_url: str = "http://127.0.0.1:7700"
-    meilisearch_index: str = "classquiz"
+    meilisearch_url: str = os.getenv("MEILI_URL", "http://127.0.0.1:7700")
+    meilisearch_index: str = "default"
     google_client_id: Optional[str]
     google_client_secret: Optional[str]
     github_client_id: Optional[str]
