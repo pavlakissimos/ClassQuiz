@@ -99,7 +99,7 @@ storage: Storage = Storage(
     base_url=settings().s3_base_url,
 )
 
-meilisearch = MeiliSearch.Client(settings().meilisearch_url)
+meilisearch = MeiliSearch.Client(settings().meilisearch_url, os.getenv("MEILI_MASTER_KEY", None))
 
 ALLOWED_TAGS_FOR_QUIZ = ["b", "strong", "i", "em", "small", "mark", "del", "sub", "sup"]
 
