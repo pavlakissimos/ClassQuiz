@@ -31,7 +31,7 @@ class Settings(BaseSettings):
 
     root_address: str = "http://127.0.0.1:8000"
     redis: RedisDsn = os.getenv("REDIS_URL", "redis://localhost:6379/0?decode_responses=True")
-    skip_email_verification: bool = False
+    skip_email_verification: bool = True
     db_url: str | PostgresDsn = os.getenv("DATABASE_URL", "postgresql://postgres:mysecretpassword@localhost:5432/classquiz")
     hcaptcha_key: str | None = None
     recaptcha_key: str | None = None
