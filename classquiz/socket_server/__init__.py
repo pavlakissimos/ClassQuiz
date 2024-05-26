@@ -258,7 +258,6 @@ async def register_as_admin(sid: str, data: dict):
             ex=7200,
         )
 
-    else:
         await sio.emit(
             "registered_as_admin",
             {"game_id": game_id, "game": await redis.get(f"game:{game_pin}")},
@@ -270,7 +269,8 @@ async def register_as_admin(sid: str, data: dict):
             session["remote"] = False
         await sio.enter_room(sid, game_pin)
         await sio.enter_room(sid, f"admin:{data.game_pin}")
-        # await sio.emit("already_registered_as_admin", room=sid)
+    else:
+        await sio.emit("already_registered_as_admin", room=sid)
 
 
 @sio.event
