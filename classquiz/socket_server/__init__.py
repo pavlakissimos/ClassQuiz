@@ -243,6 +243,7 @@ async def register_as_admin(sid: str, data: dict):
     try:
         data = _RegisterAsAdminData(**data)
     except ValidationError as e:
+        print("register_as_admin_ValidationError", e, "\n")
         await sio.emit("error", room=sid)
         print(e)
         return
