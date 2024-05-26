@@ -246,8 +246,10 @@ async def register_as_admin(sid: str, data: dict):
         await sio.emit("error", room=sid)
         print(e)
         return
+    print("_RegisterAsAdminData", data, "\n")
     game_pin = data.game_pin
     game_id = data.game_id
+    print('await redis.get(f"game_session:{game_pin}")', await redis.get(f"game_session:{game_pin}"), "\n")
     if (await redis.get(f"game_session:{game_pin}")) is None:
         await redis.set(
             f"game_session:{game_pin}",
