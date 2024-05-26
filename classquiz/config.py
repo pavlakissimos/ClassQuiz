@@ -33,7 +33,7 @@ class Settings(BaseSettings):
     redis: RedisDsn = os.getenv("REDIS_URL", "redis://localhost:6379/0?decode_responses=True")
     skip_email_verification: bool = True
     db_url: str | PostgresDsn = os.getenv("DATABASE_URL", "postgresql://postgres:mysecretpassword@localhost:5432/classquiz")
-    hcaptcha_key: str | None = None
+    hcaptcha_key: str | None = os.getenv("HCAPTCHA_KEY", None)
     recaptcha_key: str | None = None
     mail_address: str = ""
     mail_password: str = ""
@@ -46,6 +46,7 @@ class Settings(BaseSettings):
     sentry_dsn: str | None
     meilisearch_url: str = os.getenv("MEILI_URL", "http://127.0.0.1:7700")
     meilisearch_index: str = "default"
+    meilisearch_master_key: str | None = os.getenv("MEILI_MASTER_KEY", None)
     google_client_id: Optional[str]
     google_client_secret: Optional[str]
     github_client_id: Optional[str]
@@ -99,7 +100,7 @@ storage: Storage = Storage(
     base_url=settings().s3_base_url,
 )
 
-meilisearch = MeiliSearch.Client(settings().meilisearch_url, os.getenv("MEILI_MASTER_KEY", None))
+meilisearch = MeiliSearch.Client(settings().meilisearch_url)
 
 ALLOWED_TAGS_FOR_QUIZ = ["b", "strong", "i", "em", "small", "mark", "del", "sub", "sup"]
 
