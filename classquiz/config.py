@@ -100,7 +100,7 @@ storage: Storage = Storage(
     base_url=settings().s3_base_url,
 )
 
-meilisearch = MeiliSearch.Client(settings().meilisearch_url)
+meilisearch = MeiliSearch.Client(settings().meilisearch_url, settings().meilisearch_master_key)
 
 ALLOWED_TAGS_FOR_QUIZ = ["b", "strong", "i", "em", "small", "mark", "del", "sub", "sup"]
 
